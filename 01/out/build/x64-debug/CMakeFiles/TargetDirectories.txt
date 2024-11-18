@@ -1,0 +1,10 @@
+C:/study/os/os-labs/01/out/build/x64-debug/CMakeFiles/edit_cache.dir
+C:/study/os/os-labs/01/out/build/x64-debug/CMakeFiles/rebuild_cache.dir
+C:/study/os/os-labs/01/out/build/x64-debug/sys-info-crossplatform/CMakeFiles/SysInfo.dir
+C:/study/os/os-labs/01/out/build/x64-debug/sys-info-crossplatform/CMakeFiles/sys-info-crossplatform.dir
+C:/study/os/os-labs/01/out/build/x64-debug/sys-info-crossplatform/CMakeFiles/edit_cache.dir
+C:/study/os/os-labs/01/out/build/x64-debug/sys-info-crossplatform/CMakeFiles/rebuild_cache.dir
+C:/study/os/os-labs/01/out/build/x64-debug/SecretFunction/CMakeFiles/IsPrime.dir
+C:/study/os/os-labs/01/out/build/x64-debug/SecretFunction/CMakeFiles/SecretFunction.dir
+C:/study/os/os-labs/01/out/build/x64-debug/SecretFunction/CMakeFiles/edit_cache.dir
+C:/study/os/os-labs/01/out/build/x64-debug/SecretFunction/CMakeFiles/rebuild_cache.dir

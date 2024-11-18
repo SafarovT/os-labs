@@ -1,0 +1,20 @@
+# ninja log v5
+2	661	7487766922652511	sys-info-crossplatfrom_project/CMakeFiles/sys-info-crossplatfrom_project.dir/sys-info-crossplatfrom_project.cpp.obj	17b4cf2ff51573
+18	948	7487800765284015	sys-info-crossplatform/CMakeFiles/SysInfo.dir/SysInfo.cpp.obj	9d0b44adfcf6383a
+949	1004	7487800765909010	sys-info-crossplatform/SysInfo.lib	df223ff0d8478938
+1004	1243	7487800767940349	sys-info-crossplatform/sys-info-crossplatform.exe	c6e253664f31a414
+22	969	7487800765596520	sys-info-crossplatform/CMakeFiles/sys-info-crossplatform.dir/sys-info-crossplatform.cpp.obj	6e770d16a0fc8d78
+16	979	7487893778894193	SecretFunction/CMakeFiles/main.dir/main.cpp.obj	ef7fbd43a187d65c
+69	415	7487910702712338	SecretFunction/CMakeFiles/IsPrime.dir/IsPrime.cpp.obj	d3f21a8cf9792395
+415	471	7487910703337636	SecretFunction/IsPrime.lib	915ad91e872073d5
+227	534	7487895124276099	SecretFunction/main.exe	f2bdac8c1e03f449
+14	1028	7487905562505262	SecretFunction/CMakeFiles/SecretFunction.dir/SecretFunction.cpp.obj	7c136a3cc0ea1f8e
+471	707	7487910705368627	SecretFunction/SecretFunction.exe	a3bbafb4e13f6b0b
+45	811	7487941815186533	SecretFunction/CMakeFiles/IsPrime.dir/IsPrime.cpp.obj	d3f21a8cf9792395
+813	902	7487941816124500	SecretFunction/IsPrime.lib	915ad91e872073d5
+51	1010	7487941817217679	SecretFunction/CMakeFiles/SecretFunction.dir/SecretFunction.cpp.obj	7c136a3cc0ea1f8e
+1011	1255	7487941819249418	SecretFunction/SecretFunction.exe	a3bbafb4e13f6b0b
+12	707	7487941998114013	sys-info-crossplatform/CMakeFiles/SysInfo.dir/SysInfo.cpp.obj	9d0b44adfcf6383a
+15	738	7487941998427112	sys-info-crossplatform/CMakeFiles/sys-info-crossplatform.dir/sys-info-crossplatform.cpp.obj	6e770d16a0fc8d78
+708	767	7487941998739409	sys-info-crossplatform/SysInfo.lib	df223ff0d8478938
+767	1048	7487942001083382	sys-info-crossplatform/sys-info-crossplatform.exe	c6e253664f31a414

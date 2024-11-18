@@ -1,0 +1,138 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "sys-info-crossplatform",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "sys-info-crossplatform",
+					"targetIndexes" : 
+					[
+						2,
+						3
+					]
+				},
+				{
+					"build" : "SecretFunction",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "SecretFunction",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "01"
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "sys-info-crossplatform",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						2,
+						3
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "SecretFunction",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "IsPrime::@ad7d56b39393b57bfb8e",
+					"jsonFile" : "target-IsPrime-Debug-4a63fc80ab2426640ce5.json",
+					"name" : "IsPrime",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "SecretFunction::@ad7d56b39393b57bfb8e",
+					"jsonFile" : "target-SecretFunction-Debug-0c52c9450b24548c16ab.json",
+					"name" : "SecretFunction",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SysInfo::@9839d2e1ee1169965c46",
+					"jsonFile" : "target-SysInfo-Debug-b5523c2d122bd306b856.json",
+					"name" : "SysInfo",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "sys-info-crossplatform::@9839d2e1ee1169965c46",
+					"jsonFile" : "target-sys-info-crossplatform-Debug-41816fc21af2c0c2936c.json",
+					"name" : "sys-info-crossplatform",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/root/.vs/01/out/build/linux-debug",
+		"source" : "/root/.vs/01"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 2
+	}
+}

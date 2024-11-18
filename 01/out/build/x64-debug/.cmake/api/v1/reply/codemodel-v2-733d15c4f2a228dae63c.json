@@ -1,0 +1,141 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "sys-info-crossplatform",
+					"jsonFile" : "directory-sys-info-crossplatform-Debug-fe22bda410954f4be338.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "sys-info-crossplatform",
+					"targetIndexes" : 
+					[
+						2,
+						3
+					]
+				},
+				{
+					"build" : "SecretFunction",
+					"jsonFile" : "directory-SecretFunction-Debug-ecd071727f56e45f7a96.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "SecretFunction",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "01"
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "sys-info-crossplatform",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						2,
+						3
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "SecretFunction",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "IsPrime::@ad7d56b39393b57bfb8e",
+					"jsonFile" : "target-IsPrime-Debug-babaf4c6744c7ff18b0a.json",
+					"name" : "IsPrime",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "SecretFunction::@ad7d56b39393b57bfb8e",
+					"jsonFile" : "target-SecretFunction-Debug-b5d3f2b61d7fe2899411.json",
+					"name" : "SecretFunction",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SysInfo::@9839d2e1ee1169965c46",
+					"jsonFile" : "target-SysInfo-Debug-4e211ed2f1fa90e99907.json",
+					"name" : "SysInfo",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "sys-info-crossplatform::@9839d2e1ee1169965c46",
+					"jsonFile" : "target-sys-info-crossplatform-Debug-cea3566ea33e98888ae9.json",
+					"name" : "sys-info-crossplatform",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/study/os/os-labs/01/out/build/x64-debug",
+		"source" : "C:/study/os/os-labs/01"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}

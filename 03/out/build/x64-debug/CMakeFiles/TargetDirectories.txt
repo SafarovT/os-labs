@@ -1,0 +1,5 @@
+C:/study/os/os-labs/03/out/build/x64-debug/CMakeFiles/edit_cache.dir
+C:/study/os/os-labs/03/out/build/x64-debug/CMakeFiles/rebuild_cache.dir
+C:/study/os/os-labs/03/out/build/x64-debug/signal-handler/CMakeFiles/signal-handler.dir
+C:/study/os/os-labs/03/out/build/x64-debug/signal-handler/CMakeFiles/edit_cache.dir
+C:/study/os/os-labs/03/out/build/x64-debug/signal-handler/CMakeFiles/rebuild_cache.dir

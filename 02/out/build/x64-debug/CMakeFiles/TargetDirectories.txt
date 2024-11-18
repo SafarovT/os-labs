@@ -1,0 +1,5 @@
+C:/study/os/os-labs/02/out/build/x64-debug/CMakeFiles/edit_cache.dir
+C:/study/os/os-labs/02/out/build/x64-debug/CMakeFiles/rebuild_cache.dir
+C:/study/os/os-labs/02/out/build/x64-debug/zombie-cmake/CMakeFiles/zombie-cmake.dir
+C:/study/os/os-labs/02/out/build/x64-debug/zombie-cmake/CMakeFiles/edit_cache.dir
+C:/study/os/os-labs/02/out/build/x64-debug/zombie-cmake/CMakeFiles/rebuild_cache.dir
