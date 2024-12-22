@@ -1,0 +1,5 @@
+C:/study/os/os-labs/lw8/out/build/x64-debug/CMakeFiles/edit_cache.dir
+C:/study/os/os-labs/lw8/out/build/x64-debug/CMakeFiles/rebuild_cache.dir
+C:/study/os/os-labs/lw8/out/build/x64-debug/snowfall/CMakeFiles/snowfall.dir
+C:/study/os/os-labs/lw8/out/build/x64-debug/snowfall/CMakeFiles/edit_cache.dir
+C:/study/os/os-labs/lw8/out/build/x64-debug/snowfall/CMakeFiles/rebuild_cache.dir

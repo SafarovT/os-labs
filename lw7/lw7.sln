@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lw7", "lw7\lw7.vcxproj", "{6AEDC96D-F77C-4C96-9DB4-5C02C890391F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fsmon", "fsmon\fsmon.vcxproj", "{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|ARM64 = Debug|ARM64
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|ARM64 = Release|ARM64
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6AEDC96D-F77C-4C96-9DB4-5C02C890391F}.Debug|ARM.ActiveCfg = Debug|x64
+		{6AEDC96D-F77C-4C96-9DB4-5C02C890391F}.Debug|ARM.Build.0 = Debug|x64
+		{6AEDC96D-F77C-4C96-9DB4-5C02C890391F}.Debug|ARM64.ActiveCfg = Debug|x64
+		{6AEDC96D-F77C-4C96-9DB4-5C02C890391F}.Debug|ARM64.Build.0 = Debug|x64
+		{6AEDC96D-F77C-4C96-9DB4-5C02C890391F}.Debug|x64.ActiveCfg = Debug|x64
+		{6AEDC96D-F77C-4C96-9DB4-5C02C890391F}.Debug|x64.Build.0 = Debug|x64
+		{6AEDC96D-F77C-4C96-9DB4-5C02C890391F}.Debug|x86.ActiveCfg = Debug|Win32
+		{6AEDC96D-F77C-4C96-9DB4-5C02C890391F}.Debug|x86.Build.0 = Debug|Win32
+		{6AEDC96D-F77C-4C96-9DB4-5C02C890391F}.Release|ARM.ActiveCfg = Release|x64
+		{6AEDC96D-F77C-4C96-9DB4-5C02C890391F}.Release|ARM.Build.0 = Release|x64
+		{6AEDC96D-F77C-4C96-9DB4-5C02C890391F}.Release|ARM64.ActiveCfg = Release|x64
+		{6AEDC96D-F77C-4C96-9DB4-5C02C890391F}.Release|ARM64.Build.0 = Release|x64
+		{6AEDC96D-F77C-4C96-9DB4-5C02C890391F}.Release|x64.ActiveCfg = Release|x64
+		{6AEDC96D-F77C-4C96-9DB4-5C02C890391F}.Release|x64.Build.0 = Release|x64
+		{6AEDC96D-F77C-4C96-9DB4-5C02C890391F}.Release|x86.ActiveCfg = Release|Win32
+		{6AEDC96D-F77C-4C96-9DB4-5C02C890391F}.Release|x86.Build.0 = Release|Win32
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Debug|ARM.ActiveCfg = Debug|ARM
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Debug|ARM.Build.0 = Debug|ARM
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Debug|ARM.Deploy.0 = Debug|ARM
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Debug|ARM64.Build.0 = Debug|ARM64
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Debug|x64.ActiveCfg = Debug|x64
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Debug|x64.Build.0 = Debug|x64
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Debug|x64.Deploy.0 = Debug|x64
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Debug|x86.ActiveCfg = Debug|x86
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Debug|x86.Build.0 = Debug|x86
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Debug|x86.Deploy.0 = Debug|x86
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Release|ARM.ActiveCfg = Release|ARM
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Release|ARM.Build.0 = Release|ARM
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Release|ARM.Deploy.0 = Release|ARM
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Release|ARM64.ActiveCfg = Release|ARM64
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Release|ARM64.Build.0 = Release|ARM64
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Release|ARM64.Deploy.0 = Release|ARM64
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Release|x64.ActiveCfg = Release|x64
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Release|x64.Build.0 = Release|x64
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Release|x64.Deploy.0 = Release|x64
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Release|x86.ActiveCfg = Release|x86
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Release|x86.Build.0 = Release|x86
+		{54ED7C06-DC81-4DDE-80A5-2B87C7F5B85A}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AA600940-EA04-46F7-83DD-8264ADC608FA}
+	EndGlobalSection
+EndGlobal
