@@ -11,6 +11,7 @@
 #include <ws2tcpip.h>
 #include <stdexcept>
 #include "RAII.h"
+#include <thread>
 
 using namespace std;
 
@@ -31,8 +32,7 @@ string ProcessCommand(const string& command)
 
     if (numbers.empty())
     {
-        // new
-        throw new invalid_argument("Error: No numbers provided.");
+        throw invalid_argument("Error: No numbers provided.");
     }
 
     int result = numbers[0];
@@ -52,94 +52,80 @@ string ProcessCommand(const string& command)
     }
     else
     {
-        throw new invalid_argument("Error: Invalid operation");
+        throw invalid_argument("Error: Invalid operation");
     }
 
     return to_string(result);
 }
 
-// string -> число
+void HandleClient(SOCKET clientSocket)
+{
+    while (true)
+    {
+        char buffer[BUFFER_SIZE] = {};
+        int bytesReceived = recv(clientSocket, buffer, BUFFER_SIZE, 0);
+
+        if (bytesReceived > 0)
+        {
+            string command(buffer, bytesReceived);
+            string response;
+            try
+            {
+                response = ProcessCommand(command);
+            }
+            catch (const exception& e)
+            {
+                response = e.what();
+            }
+
+            send(clientSocket, response.c_str(), response.size(), 0);
+        }
+        else
+        {
+            cout << "Client disconnected." << endl;
+            break;
+        }
+    }
+}   
+
 void RunServer(const string& port)
 {
     WSADATA wsaData;
-    // RAII WSA
-    bool startupError = WSAStartup(MAKEWORD(2, 2), &wsaData);
-    if (startupError)
-    {
-        throw new runtime_error("Failed to start a server");
-    }
+    WsaRAII wsaRAII(wsaData);
 
-    addrinfo hints = {}, * serverInfo;
-    hints.ai_family = AF_INET;
-    hints.ai_socktype = SOCK_STREAM;
-    hints.ai_protocol = IPPROTO_TCP;
-    hints.ai_flags = AI_PASSIVE;
+    AddrInfoRAII addrInfoRAII(port, AF_INET, SOCK_STREAM, SOCK_STREAM, AI_PASSIVE);
+    addrinfo hints = addrInfoRAII.GetHints(), * serverInfo = addrInfoRAII.GetServerInfo();
 
-    getaddrinfo(nullptr, port.c_str(), &hints, &serverInfo);
-
-    SocketRAII listenSocketRAII(serverInfo);
+    HostSocketRAII listenSocketRAII(serverInfo);
     SOCKET listenSocket = listenSocketRAII.GetSocket();
-    bind(listenSocket, serverInfo->ai_addr, (int)serverInfo->ai_addrlen);
-    // тоже RAII
-    freeaddrinfo(serverInfo);
-
-    // убрать listen
+    bind(listenSocket, serverInfo->ai_addr, static_cast<int>(serverInfo->ai_addrlen));
     listen(listenSocket, SOMAXCONN);
+
     cout << "Server is running on port " << port << "..." << endl;
 
     while (true)
     {
-        SocketRAII clientSocketRAII(listenSocket);
-        SOCKET clientSocket = clientSocketRAII.GetSocket();
-        cout << "Client connected." << endl;
-
-        while (true)
+        SOCKET clientSocket = accept(listenSocket, nullptr, nullptr);
+        if (clientSocket == INVALID_SOCKET)
         {
-            // протестировать что будет если клиент отправит больше данных
-            char buffer[BUFFER_SIZE] = {};
-            int bytesReceived = recv(clientSocket, buffer, BUFFER_SIZE, 0);
-
-            if (bytesReceived > 0)
-            {
-                string command(buffer, bytesReceived);
-                string response = ProcessCommand(command);
-                // может ли быть так, что клиент получит данные не полностью
-                send(clientSocket, response.c_str(), response.size(), 0);
-            }
-            else
-            {
-                cout << "Client disconnected." << endl;
-                break;
-            }
+            continue;
         }
+        cout << "Client connected." << endl;
+        thread(HandleClient, clientSocket).detach();
     }
-
-    WSACleanup();
 }
-
-// При отсутсвии параметров сервер не должен падать
-// Соединение на каждый сокет обрабатывать отдельно (возможно, в потоке)
-// Сделать удобный выход
 
 void RunClient(const string& address, const string& port)
 {
     WSADATA wsaData;
-    bool startupError = WSAStartup(MAKEWORD(2, 2), &wsaData);
-    if (startupError)
-    {
-        throw new runtime_error("Failed to start a client");
-    }
+    WsaRAII wsaRAII(wsaData);
 
-    addrinfo hints = {}, * serverInfo;
-    hints.ai_family = AF_INET;
-    hints.ai_socktype = SOCK_STREAM;
-    hints.ai_protocol = IPPROTO_TCP;
+    AddrInfoRAII addrInfoRAII(address, port, AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    addrinfo hints = addrInfoRAII.GetHints(), * serverInfo = addrInfoRAII.GetServerInfo();
 
-    getaddrinfo(address.c_str(), port.c_str(), &hints, &serverInfo);
-
-    SOCKET clientSocket = socket(serverInfo->ai_family, serverInfo->ai_socktype, serverInfo->ai_protocol);
-    connect(clientSocket, serverInfo->ai_addr, (int)serverInfo->ai_addrlen);
-    freeaddrinfo(serverInfo);
+    HostSocketRAII clientSocketRAII(serverInfo);
+    auto clientSocket = clientSocketRAII.GetSocket();
+    connect(clientSocket, serverInfo->ai_addr, static_cast<int>(serverInfo->ai_addrlen));
 
     cout << "Connected to server at " << address << ":" << port << endl;
 
@@ -152,6 +138,11 @@ void RunClient(const string& address, const string& port)
         if (command.empty())
         {
             continue;
+        }
+        else if (command == "exit")
+        {
+            cout << "The end." << endl;
+            break;
         }
 
         send(clientSocket, command.c_str(), command.size(), 0);
@@ -169,9 +160,6 @@ void RunClient(const string& address, const string& port)
             break;
         }
     }
-
-    closesocket(clientSocket);
-    WSACleanup();
 }
 
 int main(int argc, char* argv[])

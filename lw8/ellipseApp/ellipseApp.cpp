@@ -168,6 +168,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     }
     case WM_COMMAND:
     {
+        // CloseWindow()
         if (LOWORD(wParam) == 1)
         {
             PostMessage(hWnd, WM_CLOSE, 0, 0);
@@ -180,7 +181,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         InvalidateRect(hWnd, nullptr, TRUE);
         break;
     }
-    case WM_LBUTTONDOWN:
+    case WM_LBUTTONDOWN: // выяснить кто посылает окну сообщение
     {
         int x = LOWORD(lParam);
         int y = HIWORD(lParam);
@@ -220,8 +221,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         break;
     }
     case WM_DESTROY:
-    {
-        PostQuitMessage(0);
+    { // проверить попадаю ли
+        PostQuitMessage(0); // выяснить для чего здесь PostQuitMessage(0);, для чего нужен контекст устройства, где он используется
         break;
     }
     default:
@@ -249,3 +250,8 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     }
     return (INT_PTR)FALSE;
 }
+
+// клики должны отслеживаться внутри еллипса
+// не использовать глобальную перменную
+// разобраться как работает поддержание окна
+// добавить пункт меню About
