@@ -1,6 +1,4 @@
 ﻿// ellipseApp.cpp : Определяет точку входа для приложения.
-//
-
 #include "framework.h"
 #include "ellipseApp.h"
 #include <ctime>
@@ -8,18 +6,19 @@
 
 #define MAX_LOADSTRING 100
 
-// Глобальные переменные:
-HINSTANCE hInst;                                // текущий экземпляр
-WCHAR szTitle[MAX_LOADSTRING];                  // Текст строки заголовка
-WCHAR szWindowClass[MAX_LOADSTRING];            // имя класса главного окна
+HINSTANCE hInst;                                
+WCHAR szTitle[MAX_LOADSTRING];                  
+WCHAR szWindowClass[MAX_LOADSTRING];            
 
-// Отправить объявления функций, включенных в этот модуль кода:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-COLORREF ellipseColor = RGB(255, 0, 0);
+struct WindowData
+{
+    COLORREF ellipseColor = RGB(255, 0, 0);
+};
 COLORREF GenerateRandomColor()
 {
     return RGB(rand() % 256, rand() % 256, rand() % 256);
@@ -39,12 +38,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-    // Инициализация глобальных строк
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_ELLIPSEAPP, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
-    // Выполнить инициализацию приложения:
     if (!InitInstance (hInstance, nCmdShow))
     {
         return FALSE;
@@ -54,7 +51,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
-    // Цикл основного сообщения:
     while (GetMessage(&msg, nullptr, 0, 0))
     {
         if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
@@ -107,7 +103,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 //
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-   hInst = hInstance; // Сохранить маркер экземпляра в глобальной переменной
+   hInst = hInstance;
    HWND hwnd = CreateWindowEx
    (
        0,
@@ -128,13 +124,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hwnd, nCmdShow);
    UpdateWindow(hwnd);
-
-   MSG msg = {};
-   while (GetMessage(&msg, nullptr, 0, 0))
-   {
-       TranslateMessage(&msg);
-       DispatchMessage(&msg);
-   }
 
    return TRUE;
 }
@@ -158,20 +147,31 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     {
         HMENU hMenu = CreateMenu();
         HMENU hFileMenu = CreateMenu();
+        HMENU hHelpMenu = CreateMenu();
 
         AppendMenu(hFileMenu, MF_STRING, 1, L"Exit");
+        AppendMenu(hHelpMenu, MF_STRING, 2, L"About");
+
         AppendMenu(hMenu, MF_POPUP, (UINT_PTR)hFileMenu, L"File");
+        AppendMenu(hMenu, MF_POPUP, (UINT_PTR)hHelpMenu, L"Help");
+
+        WindowData* dataPtr = new WindowData;
 
         SetMenu(hWnd, hMenu);
+        SetWindowLongPtr(hWnd, GWLP_USERDATA, (LONG_PTR)dataPtr);
         std::srand(static_cast<unsigned>(std::time(0)));
         break;
     }
     case WM_COMMAND:
     {
-        // CloseWindow()
-        if (LOWORD(wParam) == 1)
+        switch (LOWORD(wParam))
         {
-            PostMessage(hWnd, WM_CLOSE, 0, 0);
+        case 1:
+            DestroyWindow(hWnd);
+            break;
+        case 2:
+            MessageBox(hWnd, L"Ellipse Application\nAuthor: Tahir", L"About", MB_OK | MB_ICONINFORMATION);
+            break;
         }
         break;
     }
@@ -181,26 +181,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         InvalidateRect(hWnd, nullptr, TRUE);
         break;
     }
-    case WM_LBUTTONDOWN: // выяснить кто посылает окну сообщение
+    case WM_LBUTTONDOWN:
     {
+        WindowData* dataPtr = reinterpret_cast<WindowData*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
         int x = LOWORD(lParam);
         int y = HIWORD(lParam);
 
-        int ellipseWidth = clientRect.right - clientRect.left;
-        int ellipseHeight = clientRect.bottom - clientRect.top;
-
-        if (PtInRect(&clientRect, { x, y }))
+        HRGN hRegion = CreateEllipticRgnIndirect(&clientRect);
+        if (PtInRegion(hRegion, x, y))
         {
-            int centerX = clientRect.left + ellipseWidth / 2;
-            int centerY = clientRect.top + ellipseHeight / 2;
-
-            int dx = x - centerX;
-            int dy = y - centerY;
-            if ((4 * dx * dx) <= (ellipseWidth * ellipseWidth) && (4 * dy * dy) <= (ellipseHeight * ellipseHeight))
-            {
-                ellipseColor = GenerateRandomColor();
-                InvalidateRect(hWnd, nullptr, TRUE);
-            }
+            dataPtr->ellipseColor = GenerateRandomColor();
+            InvalidateRect(hWnd, nullptr, TRUE);
         }
         break;
     }
@@ -208,21 +199,25 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     {
         PAINTSTRUCT ps;
         HDC hdc = BeginPaint(hWnd, &ps);
+        WindowData* dataPtr = reinterpret_cast<WindowData*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
 
-        HBRUSH hBrush = CreateSolidBrush(ellipseColor);
-        HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hBrush);
+        if (dataPtr)
+        {
+            HBRUSH hBrush = CreateSolidBrush(dataPtr->ellipseColor);
+            HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hBrush);
 
-        Ellipse(hdc, clientRect.left, clientRect.top, clientRect.right, clientRect.bottom);
+            Ellipse(hdc, clientRect.left, clientRect.top, clientRect.right, clientRect.bottom);
 
-        SelectObject(hdc, hOldBrush);
-        DeleteObject(hBrush);
+            SelectObject(hdc, hOldBrush);
+            DeleteObject(hBrush);
+        }
 
         EndPaint(hWnd, &ps);
         break;
     }
     case WM_DESTROY:
-    { // проверить попадаю ли
-        PostQuitMessage(0); // выяснить для чего здесь PostQuitMessage(0);, для чего нужен контекст устройства, где он используется
+    {
+        PostQuitMessage(0);
         break;
     }
     default:

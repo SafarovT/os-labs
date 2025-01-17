@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\study\os\os-labs\lw10\quadricsolver\quadricsolver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\study\os\os-labs\lw10\quadricsolver\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{BAC44D2D-1D3D-3B3E-9FC6-4D1D853CC0CB}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

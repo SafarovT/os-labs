@@ -1,0 +1,3 @@
+C:/study/os/os-labs/lw10/quadricsolver/build/CMakeFiles/quadricsolver.dir
+C:/study/os/os-labs/lw10/quadricsolver/build/CMakeFiles/ALL_BUILD.dir
+C:/study/os/os-labs/lw10/quadricsolver/build/CMakeFiles/ZERO_CHECK.dir

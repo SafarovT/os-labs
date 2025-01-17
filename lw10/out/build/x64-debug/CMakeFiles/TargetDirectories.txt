@@ -1,0 +1,8 @@
+C:/study/os/os-labs/lw10/out/build/x64-debug/CMakeFiles/edit_cache.dir
+C:/study/os/os-labs/lw10/out/build/x64-debug/CMakeFiles/rebuild_cache.dir
+C:/study/os/os-labs/lw10/out/build/x64-debug/quadricsolver/CMakeFiles/quadricsolver.dir
+C:/study/os/os-labs/lw10/out/build/x64-debug/quadricsolver/CMakeFiles/edit_cache.dir
+C:/study/os/os-labs/lw10/out/build/x64-debug/quadricsolver/CMakeFiles/rebuild_cache.dir
+C:/study/os/os-labs/lw10/out/build/x64-debug/task1/CMakeFiles/task1.dir
+C:/study/os/os-labs/lw10/out/build/x64-debug/task1/CMakeFiles/edit_cache.dir
+C:/study/os/os-labs/lw10/out/build/x64-debug/task1/CMakeFiles/rebuild_cache.dir

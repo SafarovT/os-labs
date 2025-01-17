@@ -1,0 +1,8 @@
+# ninja log v5
+12	417	7586885858775241	quadratic_solver/CMakeFiles/quadratic_solver.dir/quadricsolver.cpp.obj	f802fd90f828cf98
+13	258	7586885858775241	quadratic_solver/quadratic_solver.dll	35263489bfa28be
+978	1204	7586910746759555	quadricsolver/quadricsolver.dll	23bec9f9c72186fc
+25	553	7587169568525818	task1/CMakeFiles/task1.dir/main.cpp.obj	4285455754aff94e
+8	1015	7587169213496090	quadricsolver/CMakeFiles/quadricsolver.dir/quadricsolver.cpp.obj	bb5071b119808700
+19	76	7587169563727339	quadricsolver/quadricsolver.lib	dfbd7fc218f6ee21
+553	813	7587169570713221	task1/task1.exe	fe598bda057f94d2
