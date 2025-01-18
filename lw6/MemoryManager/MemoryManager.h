@@ -4,6 +4,7 @@
 #include <utility>
 #include <mutex>
 #include <algorithm>
+#include <iostream>
 
 const size_t MIN_ALIGN = 8;
 
@@ -24,7 +25,7 @@ public:
 
     void* Allocate(size_t size, size_t align = alignof(std::max_align_t)) noexcept
     {
-        std::lock_guard<std::mutex> lock(m_mutex);
+        std::scoped_lock<std::mutex> lock(m_mutex);
 
         if (size == 0 || (align & (align - 1)) != 0)
         {
@@ -36,12 +37,15 @@ public:
             int multiplier = (8 + align - 1) / align;
             align *= multiplier;
         }
+
         DataBlock** prev = &m_freeList;
         DataBlock** current = &m_freeList;
+
+        const size_t metaSize = sizeof(DataBlock);
+
         while (*current)
         {
-            auto ptr = reinterpret_cast<void*>((*current) + 1);
-            auto addr = reinterpret_cast<uintptr_t>(ptr);
+            auto addr = reinterpret_cast<uintptr_t>((*current)) + metaSize;
             auto alignedStart = (addr + align - 1) & ~(align - 1);
             auto padding = alignedStart - reinterpret_cast<std::uintptr_t>(*current);
 
@@ -53,18 +57,19 @@ public:
             {
 
                 size_t totalAllocationSize = size + padding;
-                if ((*current)->size > totalAllocationSize + sizeof(DataBlock))
+                if ((*current)->size > totalAllocationSize + metaSize)
                 {
-                    DataBlock* newDataBlock = reinterpret_cast<DataBlock*>(alignedStart + size); // data-block выровнять?
-                    newDataBlock->size = (*current)->size - totalAllocationSize;
+                    auto newBlockStart = (alignedStart + size - 1) & ~(sizeof(align) - 1);
+                    DataBlock* newDataBlock = reinterpret_cast<DataBlock*>(newBlockStart);
+                    newDataBlock->size = (*current)->size - padding - size;
                     newDataBlock->next = (*current)->next;
                     (*current)->size = padding;
                     (*current)->next = newDataBlock;
                 }
 
                 *prev = (*current)->next;
-                DataBlock* allocatedBlock = reinterpret_cast<DataBlock*>(alignedStart - sizeof(DataBlock));
-                allocatedBlock->size = size + sizeof(DataBlock);
+                DataBlock* allocatedBlock = reinterpret_cast<DataBlock*>(alignedStart - metaSize);
+                allocatedBlock->size = size + metaSize;
                 return reinterpret_cast<void*>(alignedStart);
             }
 
@@ -81,7 +86,7 @@ public:
             return;
         }
 
-        std::lock_guard<std::mutex> lock(m_mutex);
+        std::scoped_lock<std::mutex> lock(m_mutex);
 
         auto* blockToFree = reinterpret_cast<DataBlock*>(reinterpret_cast<std::byte*>(addr) - sizeof(DataBlock));
         blockToFree->next = m_freeList;

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "calculator", "calculator\calculator.vcxproj", "{AE28FAF5-1A80-425E-AE70-DE949A53C247}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "whiteboard", "whiteboard\whiteboard.vcxproj", "{4FF07D3F-C17A-455F-BC39-BD76D699FE72}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{AE28FAF5-1A80-425E-AE70-DE949A53C247}.Release|x64.Build.0 = Release|x64
 		{AE28FAF5-1A80-425E-AE70-DE949A53C247}.Release|x86.ActiveCfg = Release|Win32
 		{AE28FAF5-1A80-425E-AE70-DE949A53C247}.Release|x86.Build.0 = Release|Win32
+		{4FF07D3F-C17A-455F-BC39-BD76D699FE72}.Debug|x64.ActiveCfg = Debug|x64
+		{4FF07D3F-C17A-455F-BC39-BD76D699FE72}.Debug|x64.Build.0 = Debug|x64
+		{4FF07D3F-C17A-455F-BC39-BD76D699FE72}.Debug|x86.ActiveCfg = Debug|Win32
+		{4FF07D3F-C17A-455F-BC39-BD76D699FE72}.Debug|x86.Build.0 = Debug|Win32
+		{4FF07D3F-C17A-455F-BC39-BD76D699FE72}.Release|x64.ActiveCfg = Release|x64
+		{4FF07D3F-C17A-455F-BC39-BD76D699FE72}.Release|x64.Build.0 = Release|x64
+		{4FF07D3F-C17A-455F-BC39-BD76D699FE72}.Release|x86.ActiveCfg = Release|Win32
+		{4FF07D3F-C17A-455F-BC39-BD76D699FE72}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

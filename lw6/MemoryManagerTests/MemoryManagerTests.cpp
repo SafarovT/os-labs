@@ -20,6 +20,14 @@ TEST_CASE("Alignment check", "[MemoryManager]")
     void* ptr = manager.Allocate(64, 64);
     REQUIRE(ptr != nullptr);
     REQUIRE(reinterpret_cast<uintptr_t>(ptr) % 64 == 0);
+
+    void* ptr2 = manager.Allocate(256, 128);
+    REQUIRE(ptr2 != nullptr);
+    REQUIRE(reinterpret_cast<uintptr_t>(ptr2) % 128 == 0);
+
+    void* ptr3 = manager.Allocate(16, 8);
+    REQUIRE(ptr2 != nullptr);
+    REQUIRE(reinterpret_cast<uintptr_t>(ptr2) % 8 == 0);
 }
 
 TEST_CASE("Full memory allocation", "[MemoryManager]")
@@ -34,7 +42,7 @@ TEST_CASE("Full memory allocation", "[MemoryManager]")
     REQUIRE(ptr2 == nullptr);
 }
 
-TEST_CASE("Free and reAllocate memory", "[MemoryManager]")
+TEST_CASE("Free and relocate memory", "[MemoryManager]")
 {
     constexpr size_t memorySize = 512;
     alignas(std::max_align_t) std::byte memory[memorySize];
@@ -93,16 +101,16 @@ TEST_CASE("Thread safety under load", "[MemoryManager]")
     REQUIRE(true);
 }
 
-TEST_CASE("Allocation with insufficient memory", "[MemoryManager]")
+TEST_CASE("Allocation with ended memory", "[MemoryManager]")
 {
     constexpr size_t memorySize = 128;
     alignas(std::max_align_t) std::byte memory[memorySize];
     MemoryManager manager(memory, memorySize);
 
-    void* ptr = manager.Allocate(64);
+    void* ptr = manager.Allocate(100);
     REQUIRE(ptr != nullptr);
 
-    void* ptr2 = manager.Allocate(128);
+    void* ptr2 = manager.Allocate(28);
     REQUIRE(ptr2 == nullptr);
 }
 
